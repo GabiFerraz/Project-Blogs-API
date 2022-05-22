@@ -11,11 +11,13 @@ const userLogin = async (email) => {
   if (!user) throw erro;
 
   const jwtConfig = {
-    expiresIn: '1d',
+    expiresIn: '7d',
     algorithm: 'HS256',
   };
 
-  const token = jwt.sign({ data: user }, secret, jwtConfig);
+  const token = jwt.sign({ data: email }, secret, jwtConfig);
+
+  console.log(token);
 
   return { token };
 };
