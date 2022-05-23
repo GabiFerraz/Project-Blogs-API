@@ -18,4 +18,6 @@ router.get('/user/:id', validateJWT, user.findById);
 
 router.post('/categories', validateJWT, categoryValidation, category.createCategory);
 
+router.get('/categories', validateJWT, category.findAll);
+
 module.exports = router;
