@@ -11,4 +11,6 @@ router.post('/user', createUserValidation, user.createUser);
 
 router.get('/user', validateJWT, user.findAll);
 
+router.get('/user/:id', validateJWT, user.findById);
+
 module.exports = router;

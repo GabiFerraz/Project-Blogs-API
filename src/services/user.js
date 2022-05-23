@@ -27,8 +27,17 @@ const createUser = async (dataUser) => {
 };
 
 const findAll = async () => {
-  const user = await User.findAll({ attributes: { exclude: 'password' } });
+  const users = await User.findAll({ attributes: { exclude: 'password' } });
 
+  return users;
+};
+
+const findById = async (id) => {
+  const user = await User.findByPk(id, { attributes: { exclude: 'password' } });
+
+  const erro = { status: 404, message: 'User does not exist' };
+  if (!user) throw erro;
+  
   return user;
 };
 
@@ -36,4 +45,5 @@ module.exports = {
   userLogin,
   createUser,
   findAll,
+  findById,
 };
