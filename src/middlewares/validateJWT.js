@@ -6,10 +6,10 @@ const { User } = require('../database/models');
 const secret = process.env.JWT_SECRET;
 
 module.exports = async (req, res, next) => {
-  const token = req.headers.authorization;
+  const { authorization: token } = req.headers;
 
   if (!token) {
-    return res.status(401).json({ error: 'Token not found' });
+    return res.status(401).json({ message: 'Token not found' });
   }
 
   try {
@@ -25,6 +25,6 @@ module.exports = async (req, res, next) => {
 
     next();
   } catch (error) {
-    next(error);
+    return res.status(401).json({ message: 'Expired or invalid token' });
   }
 };
