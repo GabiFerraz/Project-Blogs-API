@@ -14,7 +14,6 @@ const userLogin = async (email, password) => {
 
 const createUser = async (dataUser) => {
   const user = await User.findOne({ where: { email: dataUser.email } });
-  console.log(user);
 
   const erro = { status: 409, message: 'User already registered' };
   if (user) throw erro;
