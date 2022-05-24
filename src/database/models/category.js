@@ -14,6 +14,12 @@ const Category = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
+  Category.associate = (models) => {
+    Category.hasMany(models.PostCategory, {
+      foreignKey: 'id', as: 'postCategory'
+    });
+  }
+
   return Category;
 };
 
