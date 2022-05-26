@@ -11,7 +11,9 @@ module.exports = async (req, res, next) => {
   }
 
   try {
-    jwt.verify(token, secret);
+    const tokenJWT = jwt.verify(token, secret);
+
+    req.user = tokenJWT.data;
 
     next();
   } catch (error) {
