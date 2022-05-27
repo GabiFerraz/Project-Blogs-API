@@ -14,6 +14,17 @@ const createPost = async (req, res, next) => {
   }
 };
 
+const findAll = async (_req, res, next) => {
+  try {
+    const response = await service.findAll();
+
+    return res.status(200).json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createPost,
+  findAll,
 };
