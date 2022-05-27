@@ -5,6 +5,7 @@ const createUserValidation = require('../middlewares/createUserValidation');
 const validateJWT = require('../middlewares/validateJWT');
 const categoryValidation = require('../middlewares/categoryValidation');
 const createPostValidation = require('../middlewares/createPostValidation');
+const updatePostValidation = require('../middlewares/updatePostValidation');
 
 const user = require('../controllers/user');
 const category = require('../controllers/category');
@@ -27,5 +28,7 @@ router.post('/post', validateJWT, createPostValidation, blogPost.createPost);
 router.get('/post', validateJWT, blogPost.findAll);
 
 router.get('/post/:id', validateJWT, blogPost.findById);
+
+router.put('/post/:id', validateJWT, updatePostValidation, blogPost.update);
 
 module.exports = router;

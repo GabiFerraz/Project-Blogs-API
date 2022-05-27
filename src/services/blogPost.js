@@ -48,8 +48,22 @@ const findById = async (id) => {
   return response;
 };
 
+const update = async ({ id, title, content, user }) => {
+  const findPost = await BlogPost.findByPk(id);
+
+  const erro = { status: 401, message: 'Unauthorized user' };
+  if (findPost.userId !== user.id) throw erro;
+
+  await BlogPost.update({ title, content }, {
+    where: { id },
+  });
+
+  return findById(id);
+};
+
 module.exports = {
   createPost,
   findAll,
   findById,
+  update,
 };
