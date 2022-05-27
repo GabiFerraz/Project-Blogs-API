@@ -26,4 +26,6 @@ router.post('/post', validateJWT, createPostValidation, blogPost.createPost);
 
 router.get('/post', validateJWT, blogPost.findAll);
 
+router.get('/post/:id', validateJWT, blogPost.findById);
+
 module.exports = router;
