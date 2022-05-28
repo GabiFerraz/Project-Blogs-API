@@ -61,9 +61,19 @@ const update = async ({ id, title, content, user }) => {
   return findById(id);
 };
 
+const erase = async (id, user) => {
+  const findPost = await findById(id);
+
+  const erro = { status: 401, message: 'Unauthorized user' };
+  if (findPost.userId !== user.id) throw erro;
+
+  await BlogPost.destroy({ where: { id } });
+};
+
 module.exports = {
   createPost,
   findAll,
   findById,
   update,
+  erase,
 };

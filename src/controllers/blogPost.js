@@ -50,9 +50,23 @@ const update = async (req, res, next) => {
   }
 };
 
+const erase = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { user } = req;
+
+    await service.erase(id, user);
+
+    return res.status(204).json();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createPost,
   findAll,
   findById,
   update,
+  erase,
 };
