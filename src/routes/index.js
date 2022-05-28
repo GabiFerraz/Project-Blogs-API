@@ -33,4 +33,6 @@ router.put('/post/:id', validateJWT, updatePostValidation, blogPost.update);
 
 router.delete('/post/:id', validateJWT, blogPost.erase);
 
+router.delete('/user/me', validateJWT, user.erase);
+
 module.exports = router;

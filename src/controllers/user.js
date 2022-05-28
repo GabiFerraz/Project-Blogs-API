@@ -46,9 +46,22 @@ const findById = async (req, res, next) => {
   }
 };
 
+const erase = async (req, res, next) => {
+  try {
+    const { id } = req.user;
+
+    await service.erase(id);
+
+    return res.status(204).json();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   userLogin,
   createUser,
   findAll,
   findById,
+  erase,
 };
