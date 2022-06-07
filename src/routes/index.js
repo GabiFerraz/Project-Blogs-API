@@ -35,4 +35,6 @@ router.delete('/post/:id', validateJWT, blogPost.erase);
 
 router.delete('/user/me', validateJWT, user.erase);
 
+// router.get('/post/search', validateJWT);
+
 module.exports = router;
